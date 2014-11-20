@@ -18,6 +18,7 @@ window.Gist.Routers.appRouter = Backbone.Router.extend({
     })
 
     this.$rootEl.html(showView.render().$el)
+    gist.fetch()
   },
 
   gistIndexView: function(){
