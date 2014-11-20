@@ -17,4 +17,5 @@ class Note < ActiveRecord::Base
   belongs_to :user
   has_many :favorites
   has_many :favoriting_users, through: :favorites, source: :user
+  has_many :gist_files, class_name: "GistFile", foreign_key: :gist_id, primary_key: :id
 end

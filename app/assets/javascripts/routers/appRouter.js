@@ -1,6 +1,6 @@
 window.Gist.Routers.appRouter = Backbone.Router.extend({
   routes: {
-    "" : "gistIndexView",
+    "gists/:gist_id/gist_files/:id": "showGistFile",
     "gists/new": "gistNewView",
     "gists/:id": "gistShowView"
   },
@@ -9,6 +9,19 @@ window.Gist.Routers.appRouter = Backbone.Router.extend({
     this.$rootEl = options.$rootEl
     this.$sideBarEl = options.$sideBarEl
     this.gistIndexView()
+  },
+
+  showGistFile: function(gist_id, id){
+
+    var gist = Gist.gists.getOrFetch(gist_id)
+    var gistFile = gist.gistFiles().getOrFetch(id)
+
+    var gistFileView = new window.Gist.Views.GistFileView({
+      model: gistFile
+    })
+
+    this.$rootEl.html(gistFileView.render().$el)
+    gistFile.fetch();
   },
 
   gistShowView: function(id){

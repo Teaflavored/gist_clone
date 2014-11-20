@@ -8,6 +8,7 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+    @gist_files = @note.gist_files
     render :show
   end
 

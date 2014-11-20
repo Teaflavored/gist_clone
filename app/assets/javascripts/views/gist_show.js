@@ -34,11 +34,13 @@ window.Gist.Views.gistShow = Backbone.View.extend({
 
   initialize: function(){
     this.listenTo(this.model, "sync", this.render)
+    this.listenTo(this.model.gistFiles(), "sync add", this.render)
   },
 
   render: function(){
     var renderedContent = this.template({
-      gist: this.model
+      gist: this.model,
+      gist_files: this.model.gistFiles()
     })
 
     this.$el.html(renderedContent)

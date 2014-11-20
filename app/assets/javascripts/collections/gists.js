@@ -4,6 +4,7 @@ window.Gist.Collections.Gists = Backbone.Collection.extend({
   getOrFetch: function(id){
     var gist = Gist.gists.get(id)
     if(gist){
+      gist.fetch()
       return gist;
     } else {
       gist = new window.Gist.Models.Gist({id: id})

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :notes, defaults: { format: :json }, only: [:index, :show, :create] do
     resource :favorite, only: [:create, :destroy]
+    resources :gist_files, only: [:index]
   end
-
-  resources :favorites, defaults: { format: :json }, only: [:index]
+  resources :gist_files, defaults: { format: :json }, only: [:create, :update, :show]
 end

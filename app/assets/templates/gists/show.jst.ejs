@@ -1,4 +1,10 @@
 <h2>Title: <%= gist.escape("title") %></h2>
 <span class="glyphicon glyphicon-heart <%= !!gist._favorite ? "favorited" : "unfavorited" %>" data-gist-id="<%= gist.id %>" aria-hidden="true"></span>
-
-<p>User id: <%= gist.escape("user_id")%></p>
+<h3>List of All files in this Gist</h3>
+<ul>
+  <% gist_files.each(function(gist_file) { %>
+    <li>
+      <a href="#/gists/<%= gist.id %>/gist_files/<%= gist_file.id %>"><%= gist_file.escape("name") %></a>
+    </li>
+  <% }) %>
+</ul>

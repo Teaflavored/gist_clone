@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120010012) do
+ActiveRecord::Schema.define(version: 20141120045411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20141120010012) do
   add_index "favorites", ["note_id"], name: "index_favorites_on_note_id", using: :btree
   add_index "favorites", ["user_id", "note_id"], name: "index_favorites_on_user_id_and_note_id", unique: true, using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
+  create_table "gist_files", force: true do |t|
+    t.integer  "gist_id",    null: false
+    t.string   "name",       null: false
+    t.text     "body",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gist_files", ["gist_id"], name: "index_gist_files_on_gist_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.string   "title",      null: false
