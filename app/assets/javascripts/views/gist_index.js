@@ -2,11 +2,7 @@ window.Gist.Views.gistIndex = Backbone.View.extend({
   template: JST["gists/index"],
 
   initialize: function(options){
-    this.listenTo(this.collection, "sync", this.render)
-  },
-
-  refresh: function(){
-    this.collection.fetch();
+    this.listenTo(this.collection, "sync add remove change:title", this.render)
   },
 
   render: function(){

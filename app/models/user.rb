@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :notes
+  has_many :favorites
+  has_many :favorite_notes, through: :favorites, source: :note
+
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

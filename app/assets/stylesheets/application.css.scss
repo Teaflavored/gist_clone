@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+div#main{
+  float:left;
+  width:70%
+}
+
+div#sidebar{
+  float:left;
+  width:30%;
+}
+.glyphicon{
+  font-size: 2em;
+}
+.unfavorited{
+}
+
+.favorited{
+  color:red
+}

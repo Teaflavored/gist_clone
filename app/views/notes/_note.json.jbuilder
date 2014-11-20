@@ -1,1 +1,1 @@
-json.extract!(note, :title, :user_id)
+json.extract!(note, :id, :title, :user_id)

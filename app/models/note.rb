@@ -1,4 +1,20 @@
+# == Schema Information
+#
+# Table name: notes
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  user_id    :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Note < ActiveRecord::Base
-  belongs_to :user
+
+
   validates :title, :user, presence: true
+
+  belongs_to :user
+  has_many :favorites
+  has_many :favoriting_users, through: :favorites, source: :user
 end

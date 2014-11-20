@@ -1,16 +1,41 @@
 window.Gist.Routers.appRouter = Backbone.Router.extend({
   routes: {
-    "" : "gistIndexView"
+    "" : "gistIndexView",
+    "gists/new": "gistNewView",
+    "gists/:id": "gistShowView"
+  },
+
+  initialize: function(options){
+    this.$rootEl = options.$rootEl
+    this.$sideBarEl = options.$sideBarEl
+    this.gistIndexView()
+  },
+
+  gistShowView: function(id){
+    var gist = Gist.gists.getOrFetch(id);
+    var showView = new window.Gist.Views.gistShow({
+      model: gist
+    })
+
+    this.$rootEl.html(showView.render().$el)
   },
 
   gistIndexView: function(){
-    var gists = new window.Gist.Collections.Gists();
     var indexView = new window.Gist.Views.gistIndex({
-      collection: gists
+      collection: Gist.gists
     })
 
-    $("div#main").html(indexView.render().$el)
+    this.$sideBarEl.html(indexView.render().$el)
 
-    indexView.refresh();
+    Gist.gists.fetch()
+  },
+
+  gistNewView: function(){
+    var gist = new window.Gist.Models.Gist();
+    var newView = new window.Gist.Views.GistForm({
+      model: gist
+    })
+
+    this.$rootEl.html(newView.render().$el)
   }
 })

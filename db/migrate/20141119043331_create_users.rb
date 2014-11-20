@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :session_token, null: false
       t.timestamps
     end
-
     add_index :users, :username, unique: true
     add_index :users, :session_token
   end
